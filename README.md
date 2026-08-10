@@ -32,8 +32,9 @@
 - 三种食材比例方案：祖先饮食型 / 长寿均衡型 / 传统临床型
 
 ## 使用方法
+
 方法1.
-# 一键安装，把下面的命令复制给你的Ai
+一键安装，把下面的命令复制给你的Ai
 请帮我安装以下技能，git clone https://github.com/bigmartin404/pet-cooked-recipe.git ~/.claude/skills/pet-cooked-recipe
 
 方法2
