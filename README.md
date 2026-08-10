@@ -33,13 +33,28 @@
 
 ## 使用方法
 
-方法1.
-一键安装，把下面的命令复制给你的Ai
-请帮我安装以下技能，git clone https://github.com/bigmartin404/pet-cooked-recipe.git ~/.claude/skills/pet-cooked-recipe
+## 🤖 AI 一键安装
 
-方法2
-将整个 `pet-cooked-recipe/` 目录放置在 ai 工具 的 `/skills/` 目录下即可自动加载。
+**直接复制以下指令发送给你的 AI（Claude Code / Cursor / Windsurf 等）：**
 
+> **安装指令：**
+> ```
+> 请帮我安装这个 GitHub 上的 AI Skill：
+> https://github.com/bigmartin404/pet-cooked-recipe
+> 
+> 要求：
+> 1. 识别我当前使用的 IDE 或 AI 环境（Claude Code / Cursor 等）。
+> 2. 自动将 Skill 克隆到对应的技能目录（全局或项目级）。
+> 3. 确保 references 文件夹和 SKILL.md 结构完整，能被正确加载。
+> 4. 安装完成后告诉我如何使用该 Skill。
+> ```
+
+---
+
+### 🚀 或者，直接运行这条命令（AI 会自动接管）：
+git clone https://github.com/bigmartin404/pet-cooked-recipe.git
+ /tmp/pet-cooked-recipe && code /tmp/pet-cooked-recipe
+ 
 ## 调用方式：
 1. 自动匹配调用 当你的对话内容匹配到技能描述中的关键词时，AI 会自动加载该技能。
 2. 触发关键词包括：
