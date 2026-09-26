@@ -1,7 +1,7 @@
 {
   "module": "7_cooking_loss_k_factor",
   "version": "2026.08",
-  "description": "烹饪损失系数模块：蒸 / 煮(炖) / 低温慢煮 三档 × 营养素类型 × 是否保留肉汤。因子含义：retention_factor = 烹饪后保留比例（0-1），loss_factor = 1/retention_factor（配料需乘的倍数以补偿损失）。loss_factor=1.2 表示需多配 20% 食材或补剂来抵损失。",
+  "description": "烹饪损失系数参考数据表：蒸 / 煮(炖) / 低温慢煮 三档 × 营养素类型 × 是否保留肉汤。AI直接读取本JSON中的数据进行手工计算，无需调用任何脚本或程序。因子含义：retention_factor = 烹饪后保留比例（0-1），loss_factor = 1/retention_factor（配料需乘的倍数以补偿损失）。loss_factor=1.2 表示需多配 20% 食材或补剂来抵损失。",
   "source_hierarchy": {
     "primary": "USDA Table of Nutrient Retention Factors, Release 6 (2007) — ars.usda.gov/arsuserfiles/80400530/pdf/retn06.pdf",
     "secondary": [
@@ -269,35 +269,35 @@
     ]
   },
 
-  "skill_integration_spec": {
-    "description": "SKILL 集成接口规范——agent 如何调用本模块。",
-    "input_schema": {
-      "method": "steam | boil | sous_vide_low_temp",
-      "core_temp_c": "number (SV 必填，蒸/煮可省略)",
-      "duration_min": "number",
-      "retain_broth": "boolean (煮档必问)",
-      "vacuum": "boolean (SV 档可选，默认 true)",
+  "calculation_guide": {
+    "description": "烹饪损失计算指南——AI如何使用本数据进行手工计算。无需脚本，AI直接读取数据后按以下步骤运算。",
+    "calculation_inputs": {
+      "method": "烹饪方式：steam(蒸) | boil(煮) | sous_vide_low_temp(低温慢煮)",
+      "core_temp_c": "数字，仅低温慢煮需要（蒸/煮可省略）",
+      "duration_min": "烹饪时长，分钟",
+      "retain_broth": "是否留汤（煮时必须确认）",
+      "vacuum": "是否真空（低温慢煮可选，默认 true）",
       "ingredients": [
         {
-          "id": "string (ingredient_db 中的 ID)",
-          "amount_raw_g": "number",
-          "category": "meat | organ | fish | poultry | egg | grain | veg"
+          "id": "食材名称或ID",
+          "amount_raw_g": "生重克数",
+          "category": "食材类别：meat | organ | fish | poultry | egg | grain | veg"
         }
       ]
     },
-    "output_schema": {
+    "calculation_outputs": {
       "per_ingredient": {
-        "ingredient_id": "string",
-        "amount_raw_g": "number",
-        "amount_after_cooking_g": "number (raw × 烹饪失重系数)",
-        "nutrients_dm_adjusted": {
-          "nutrient_id": "value_after_loss (raw_dm_value / retention_factor)"
+        "ingredient_id": "食材名称或ID",
+        "amount_raw_g": "生重克数",
+        "amount_after_cooking_g": "烹饪后重量（生重 × 烹饪失重系数）",
+        "nutrients_after_cooking": {
+          "nutrient_name": "烹饪后值 = 原始值 × retention_factor"
         }
       },
-      "flags": ["array of triggered auto_flag_rules"],
-      "disclaimer": "string (低温慢煮 confidence 标注等)"
+      "warnings": ["需要触发的告警规则列表"],
+      "disclaimer": "说明文字（如低温慢煮数据可信度标注等）"
     },
-    "cooking_loss_calc_pseudo": "// 伪代码：agent 计算单食材单营养素烹饪后值\nfor each ingredient:\n  table = method == 'boil' ? (retain_broth ? boil.retention_broth_retained : boil.retention_broth_discarded) : method_table\n  override = ingredient_overrides.get(ingredient.category + '_' + method)\n  for each nutrient:\n    rf = override[nutrient]?.retention_factor ?? table[nutrient].retention_factor\n    adjusted_dm = raw_dm_value * rf\n    adjusted_as_fed = adjusted_dm * (1 - moisture_pct/100)"
+    "calculation_steps": "AI手工计算步骤：\n第1步：根据烹饪方式选择对应的保留率表\n  - 蒸 → steam.retention\n  - 煮+留汤 → boil.retention_broth_retained\n  - 煮+倒汤 → boil.retention_broth_discarded\n  - 低温慢煮 → sous_vide_low_temp.retention\n第2步：检查该食材是否在 ingredient_overrides 中有特定覆盖值\n第3步：对每种营养素：\n  - 如有食材特定覆盖值 → 使用覆盖值的 retention_factor\n  - 如无 → 使用通用表中的 retention_factor\n  - 烹饪后值 = 原始值 × retention_factor\n第4步：检查 auto_flag_rules 中的告警规则是否触发\n第5步：标注数据可信度（特别是低温慢煮）"
   },
 
   "references": [

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "profile_type": "dog",
+  "last_updated": "2026-09-26",
+  "basic_info": {
+    "name": "示例犬",
+    "breed": "混血犬",
+    "age_years": 7,
+    "age_months": 0,
+    "sex": "male",
+    "neutered": false,
+    "body_weight_kg": 8.3,
+    "ideal_weight_kg": 9.5,
+    "body_condition_score": 4,
+    "activity_level": "moderate_high",
+    "activity_hours_per_day": 1.75,
+    "activity_description": "每天遛狗1.5-2小时，包括散步和少量跑跳"
+  },
+  "feeding_goal": {
+    "goal": "gain",
+    "weight_change_rate_kg_per_week": 0.1,
+    "target_calorie_factor": 2.0
+  },
+  "lifestage": "senior",
+  "medical_history": {
+    "chronic_conditions": [],
+    "allergies": [],
+    "food_intolerances": [],
+    "medications": [],
+    "special_dietary_needs": "曾因腹泻体重由9.5kg降至8.3kg，目前处于增重恢复期；脂肪需渐进增加，观察粪便"
+  },
+  "available_ingredients": {
+    "primary_proteins": ["pork_leg_skin_on", "duck_breast_skinless"],
+    "secondary_proteins": [],
+    "organ_meats": ["chicken_heart_raw", "pork_liver_raw", "pork_kidney_raw"],
+    "fish": ["salmon_atlantic_farmed_raw"],
+    "eggs": ["egg_whole_raw"],
+    "vegetables": ["carrot_raw"],
+    "grains_carbs": ["brown_rice_raw", "oats_dry", "wheat_berry"],
+    "oils_fats": ["coconut_oil"],
+    "bones": []
+  },
+  "current_supplements": {
+    "calcium_source": "eggshell_powder",
+    "iodine_source": "now_potassium_iodide_225mcg",
+    "vitamin_e": "d_alpha_tocopherol_50mg",
+    "vitamin_d": "",
+    "zinc": "zinc_gluconate_70mg",
+    "copper": "",
+    "selenium": "",
+    "other": ["manganese_tablet_10mg"]
+  },
+  "feeding_preferences": {
+    "cooking_method": "boil",
+    "meals_per_day": 2,
+    "include_bones": false,
+    "include_fiber": true,
+    "ratio_template": "modified_cooked"
+  },
+  "calculation_history": []
+}

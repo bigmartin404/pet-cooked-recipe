@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "profile_type": "cat",
+  "last_updated": "",
+  "basic_info": {
+    "name": "",
+    "breed": "",
+    "age_years": 0,
+    "age_months": 0,
+    "sex": "",
+    "neutered": false,
+    "body_weight_kg": 0,
+    "ideal_weight_kg": 0,
+    "body_condition_score": 0,
+    "activity_level": "",
+    "activity_hours_per_day": 0,
+    "activity_description": "",
+    "indoor_outdoor": ""
+  },
+  "feeding_goal": {
+    "goal": "",
+    "weight_change_rate_kg_per_week": 0,
+    "target_calorie_factor": 0
+  },
+  "lifestage": "",
+  "medical_history": {
+    "chronic_conditions": [],
+    "allergies": [],
+    "food_intolerances": [],
+    "medications": [],
+    "special_dietary_needs": ""
+  },
+  "available_ingredients": {
+    "primary_proteins": [],
+    "secondary_proteins": [],
+    "organ_meats": [],
+    "fish": [],
+    "eggs": [],
+    "vegetables": [],
+    "grains_carbs": [],
+    "oils_fats": [],
+    "bones": []
+  },
+  "current_supplements": {
+    "taurine": "",
+    "calcium_source": "",
+    "iodine_source": "",
+    "vitamin_e": "",
+    "vitamin_d": "",
+    "vitamin_a": "",
+    "zinc": "",
+    "copper": "",
+    "selenium": "",
+    "other": []
+  },
+  "feeding_preferences": {
+    "cooking_method": "boil",
+    "meals_per_day": 2,
+    "include_bones": false,
+    "include_vegetables": true,
+    "ratio_template": "modified_cooked"
+  },
+  "calculation_history": []
+}
